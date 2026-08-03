@@ -15,10 +15,10 @@ const REGISTRARS = [
   { id: 'porkbun', name: 'Porkbun', baseUrl: 'https://porkbun.com/checkout/search?q=' },
   { id: 'spaceship', name: 'Spaceship', baseUrl: 'https://www.spaceship.com/domain-search/?query=' },
   { id: 'namecheap', name: 'Namecheap', baseUrl: 'https://www.namecheap.com/domains/registration/results/?domain=' },
-  { id: 'hostinger', name: 'Hostinger', baseUrl: 'https://www.hostinger.com/domain-name-search?domain=' },
+  { id: 'hostinger', name: 'Hostinger', baseUrl: 'https://www.hostinger.com/domain-name-search' },
   { id: 'godaddy', name: 'GoDaddy', baseUrl: 'https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=' },
   { id: 'cloudflare', name: 'Cloudflare', baseUrl: 'https://www.cloudflare.com/products/registrar/' },
-  { id: 'wix', name: 'Wix', baseUrl: 'https://www.wix.com/domain/names/search?query=' }
+  { id: 'wix', name: 'Wix', baseUrl: 'https://www.wix.com/domains' }
 ];
 
 const PRICING_MATRIX: TldRates = {
@@ -71,8 +71,8 @@ export function getRegistrarPricing(fullDomain: string, tld: string): RegistrarP
       let affiliateUrl = `${reg.baseUrl}${fullDomain}${reg.baseUrl.includes('?') ? '&' : '?'}aff=getyourdomain_tag`;
       if (reg.id === 'godaddy') {
         affiliateUrl = `${reg.baseUrl}${fullDomain}`;
-      } else if (reg.id === 'cloudflare') {
-        affiliateUrl = reg.baseUrl;
+      } else if (reg.id === 'cloudflare' || reg.id === 'hostinger' || reg.id === 'wix') {
+        affiliateUrl = `${reg.baseUrl}?aff=getyourdomain_tag`;
       }
 
       return {
