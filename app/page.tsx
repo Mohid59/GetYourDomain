@@ -77,13 +77,15 @@ export default function Home() {
             <SearchBox isLoading={loading} onSearch={handleSearch}/>
             
             {/* Legitimate Trust Signal Banner */}
-            <div className="mt-8 pt-8 border-t border-white/10 max-w-2xl mx-auto flex flex-col items-center justify-center opacity-70 mb-8">
-              <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-6">Real-time data indexed from top ICANN-accredited registrars</p>
-              <div className="flex items-center justify-center space-x-6 sm:space-x-10 grayscale opacity-70">
+            <div className="mt-8 pt-8 border-t border-white/10 max-w-3xl mx-auto flex flex-col items-center justify-center opacity-70 mb-8">
+              <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-6 text-center">Real-time data indexed from top ICANN-accredited registrars</p>
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 grayscale opacity-70">
                 <div className="text-sm font-bold text-slate-300">Namecheap</div>
                 <div className="text-sm font-bold text-slate-300">Porkbun</div>
                 <div className="text-sm font-bold text-slate-300">Spaceship</div>
                 <div className="text-sm font-bold text-slate-300">Cloudflare</div>
+                <div className="text-sm font-bold text-slate-300">Hostinger</div>
+                <div className="text-sm font-bold text-slate-300">Wix</div>
                 <div className="text-sm font-bold text-slate-300">GoDaddy</div>
               </div>
             </div>
