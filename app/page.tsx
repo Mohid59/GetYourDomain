@@ -7,10 +7,16 @@ import RegistrarTable from '@/components/RegistrarTable';
 import { DomainSearchResponse } from '@/types/domain';
 import { CheckCircle2, XCircle, Info, ShieldCheck, Zap, Globe, AlertTriangle } from 'lucide-react';
 
+import pricingData from '@/public/data/pricing.json';
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<DomainSearchResponse | null>(null);
+
+  const lastVerifiedDate = new Date(pricingData.lastUpdated).toLocaleDateString('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric'
+  });
 
   const handleSearch = async (domain: string) => {
     setLoading(true);
@@ -78,7 +84,8 @@ export default function Home() {
             
             {/* Legitimate Trust Signal Banner */}
             <div className="mt-8 pt-8 border-t border-white/10 max-w-3xl mx-auto flex flex-col items-center justify-center opacity-70 mb-8">
-              <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-6 text-center">Real-time data indexed from top ICANN-accredited registrars</p>
+              <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2 text-center">Real-time data indexed from top ICANN-accredited registrars</p>
+              <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-bold mb-6 text-center">Prices Last Verified: {lastVerifiedDate}</p>
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 grayscale opacity-70">
                 <div className="text-sm font-bold text-slate-300">Namecheap</div>
                 <div className="text-sm font-bold text-slate-300">Porkbun</div>
