@@ -55,23 +55,27 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow py-16 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+    <div className="flex flex-col min-h-screen relative overflow-hidden">
+      {/* Cinematic Ambient Blur Orbs */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-900/30 blur-[150px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-blue-900/20 blur-[150px] rounded-full pointer-events-none -z-10" />
+
+      <main className="flex-grow py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-5xl mx-auto text-center">
           
           <motion.div 
             initial="hidden" 
             animate="visible" 
             variants={containerVariants}
-            className="mb-12"
+            className="mb-16"
           >
-            <motion.div variants={itemVariants} className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-              <span className="text-xs font-semibold uppercase tracking-widest text-blue-400">Next-Gen Domain Search</span>
+            <motion.div variants={itemVariants} className="inline-block mb-8">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400 border-b border-cyan-400/30 pb-2">Next-Gen Domain Search</span>
             </motion.div>
-            <motion.h1 variants={itemVariants} className="text-5xl sm:text-7xl font-extrabold tracking-tight text-white mb-6 drop-shadow-lg">
-              GetYour<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Domain</span>
+            <motion.h1 variants={itemVariants} className="text-6xl sm:text-8xl font-extrabold tracking-tighter text-white mb-8">
+              GetYour<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Domain</span>
             </motion.h1>
-            <motion.p variants={itemVariants} className="mt-4 text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
+            <motion.p variants={itemVariants} className="mt-6 text-xl sm:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed tracking-tight">
               Stop overpaying for renewals. Compare real domain costs across major registrars and find the true 3-year price instantly.
             </motion.p>
           </motion.div>
@@ -84,17 +88,16 @@ export default function Home() {
             <SearchBox isLoading={loading} onSearch={handleSearch}/>
             
             {/* Legitimate Trust Signal Banner */}
-            <div className="mt-8 pt-8 border-t border-white/10 max-w-3xl mx-auto flex flex-col items-center justify-center opacity-70 mb-8">
-              <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2 text-center">Real-time data indexed from top ICANN-accredited registrars</p>
-              <p className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-bold mb-6 text-center">Prices Last Verified: {lastVerifiedDate}</p>
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 grayscale opacity-70">
-                <div className="text-sm font-bold text-slate-300">Namecheap</div>
-                <div className="text-sm font-bold text-slate-300">Porkbun</div>
-                <div className="text-sm font-bold text-slate-300">Spaceship</div>
-                <div className="text-sm font-bold text-slate-300">Cloudflare</div>
-                <div className="text-sm font-bold text-slate-300">Hostinger</div>
-                <div className="text-sm font-bold text-slate-300">Wix</div>
-                <div className="text-sm font-bold text-slate-300">GoDaddy</div>
+            <div className="mt-4 max-w-3xl mx-auto flex flex-col items-center justify-center opacity-70 mb-12">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-6 text-center">Data Indexed from ICANN-Accredited Registrars • Last Verified: {lastVerifiedDate}</p>
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                <div className="text-sm font-bold tracking-tight text-white">Namecheap</div>
+                <div className="text-sm font-bold tracking-tight text-white">Porkbun</div>
+                <div className="text-sm font-bold tracking-tight text-white">Spaceship</div>
+                <div className="text-sm font-bold tracking-tight text-white">Cloudflare</div>
+                <div className="text-sm font-bold tracking-tight text-white">Hostinger</div>
+                <div className="text-sm font-bold tracking-tight text-white">Wix</div>
+                <div className="text-sm font-bold tracking-tight text-white">GoDaddy</div>
               </div>
             </div>
           </motion.div>
@@ -106,12 +109,12 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="mt-8 p-5 bg-rose-500/10 border border-rose-500/20 backdrop-blur-xl rounded-2xl flex items-center text-left text-rose-200"
+                className="mt-12 p-6 bg-transparent border-l-2 border-rose-500 flex items-center text-left text-rose-200"
               >
-                <AlertTriangle className="w-6 h-6 text-rose-400 mr-4 flex-shrink-0"/>
+                <AlertTriangle className="w-8 h-8 text-rose-400 mr-5 flex-shrink-0"/>
                 <div>
-                  <p className="font-bold text-lg text-rose-300">Oops! Something went wrong.</p>
-                  <p className="text-sm opacity-80">{error}</p>
+                  <p className="font-bold text-xl text-rose-300 tracking-tight">Oops! Something went wrong.</p>
+                  <p className="text-sm opacity-80 mt-1">{error}</p>
                 </div>
               </motion.div>
             )}
@@ -160,29 +163,29 @@ export default function Home() {
               >
                 {data.isAvailable ? (
                   <div>
-                    <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-xl rounded-2xl flex items-center text-emerald-100 mb-8 shadow-[0_0_40px_rgba(16,185,129,0.1)]">
-                      <CheckCircle2 className="w-10 h-10 text-emerald-400 mr-5 flex-shrink-0"/>
+                    <div className="p-8 bg-transparent border-l-2 border-emerald-400 flex items-center text-emerald-100 mb-12">
+                      <CheckCircle2 className="w-12 h-12 text-emerald-400 mr-6 flex-shrink-0"/>
                       <div>
-                        <p className="font-extrabold text-2xl tracking-tight">{data.domain} is available!</p>
-                        <p className="text-sm text-emerald-300/80 mt-1">Select a registrar below to secure the best total cost.</p>
+                        <p className="font-bold text-4xl tracking-tighter">{data.domain} is available!</p>
+                        <p className="text-lg text-emerald-400/80 mt-2 font-light tracking-tight">Select a registrar below to secure the best total cost.</p>
                       </div>
                     </div>
                     <RegistrarTable domain={data.domain} pricing={data.pricing}/>
                   </div>
                 ) : (
                   <div>
-                    <div className="p-6 bg-amber-500/10 border border-amber-500/20 backdrop-blur-xl rounded-2xl flex items-center text-amber-100 mb-8 shadow-[0_0_40px_rgba(245,158,11,0.1)]">
-                      <XCircle className="w-10 h-10 text-amber-400 mr-5 flex-shrink-0"/>
+                    <div className="p-8 bg-transparent border-l-2 border-amber-400 flex items-center text-amber-100 mb-12">
+                      <XCircle className="w-12 h-12 text-amber-400 mr-6 flex-shrink-0"/>
                       <div>
-                        <p className="font-extrabold text-2xl tracking-tight">{data.domain} is taken.</p>
-                        <p className="text-sm text-amber-300/80 mt-1">Try one of the alternative brand suggestions below.</p>
+                        <p className="font-bold text-4xl tracking-tighter">{data.domain} is taken.</p>
+                        <p className="text-lg text-amber-400/80 mt-2 font-light tracking-tight">Try one of the alternative brand suggestions below.</p>
                       </div>
                     </div>
 
                     {data.suggestions.length > 0 && (
-                      <div className="bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl">
-                        <h4 className="text-xl font-bold text-white mb-6 flex items-center tracking-tight">
-                          <Zap className="w-6 h-6 text-amber-400 mr-3"/>
+                      <div className="p-8 mt-4 border-t border-white/5">
+                        <h4 className="text-lg font-bold text-white mb-6 flex items-center tracking-widest uppercase text-[11px] text-amber-400/80">
+                          <Zap className="w-4 h-4 mr-2"/>
                           Available Alternatives
                         </h4>
                         <div className="flex flex-wrap gap-4">
@@ -192,10 +195,10 @@ export default function Home() {
                               initial={{ opacity: 0, scale: 0.9 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ delay: i * 0.1 }}
-                              whileHover={{ scale: 1.05, backgroundColor: 'rgba(59,130,246,0.2)', borderColor: 'rgba(59,130,246,0.5)' }}
+                              whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={() => handleSearch(sug)}
-                              className="px-5 py-2.5 bg-white/5 border border-white/10 text-blue-100 rounded-xl text-sm font-semibold transition-colors shadow-lg"
+                              className="px-6 py-3 bg-transparent border-b border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 text-lg font-light transition-colors"
                             >
                               {sug}
                             </motion.button>
@@ -217,22 +220,21 @@ export default function Home() {
                 className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-4xl mx-auto"
               >
                 {[
-                  { icon: Globe, title: "50+ Top TLDs", desc: "Search across the most popular domain extensions including .com, .net, .io, and more.", color: "text-blue-400", bg: "bg-blue-500/10" },
-                  { icon: ShieldCheck, title: "Hidden Fees Revealed", desc: "We factor in WHOIS privacy and high renewal rates so you know exactly what you'll pay.", color: "text-emerald-400", bg: "bg-emerald-500/10" },
-                  { icon: Info, title: "True 3-Year TCO", desc: "Don't get tricked by $0.99 promos. We rank by Total Cost of Ownership over 3 years.", color: "text-purple-400", bg: "bg-purple-500/10" },
+                  { icon: Globe, title: "50+ Top TLDs", desc: "Search across the most popular domain extensions including .com, .net, .io, and more.", color: "text-cyan-400" },
+                  { icon: ShieldCheck, title: "Hidden Fees Revealed", desc: "We factor in WHOIS privacy and high renewal rates so you know exactly what you'll pay.", color: "text-emerald-400" },
+                  { icon: Info, title: "True 3-Year TCO", desc: "Don't get tricked by $0.99 promos. We rank by Total Cost of Ownership over 3 years.", color: "text-blue-400" },
                 ].map((feat, idx) => (
                   <motion.div 
                     key={idx}
                     variants={itemVariants}
-                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                    className="p-8 bg-white/5 backdrop-blur-lg rounded-3xl border border-white/10 shadow-2xl hover:bg-white/10 transition-colors group relative overflow-hidden"
+                    className="p-8 group relative"
                   >
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className={`w-14 h-14 ${feat.bg} rounded-2xl flex items-center justify-center mb-6 ${feat.color} shadow-inner`}>
-                      <feat.icon className="w-7 h-7"/>
+                    <div className="absolute top-0 left-8 w-8 h-px bg-white/20 group-hover:bg-cyan-400 group-hover:w-16 transition-all duration-500"></div>
+                    <div className={`mt-6 mb-6 ${feat.color}`}>
+                      <feat.icon className="w-8 h-8"/>
                     </div>
-                    <h3 className="font-bold text-white text-xl mb-3 tracking-tight">{feat.title}</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">{feat.desc}</p>
+                    <h3 className="font-bold text-white text-2xl mb-3 tracking-tight">{feat.title}</h3>
+                    <p className="text-slate-400 text-lg font-light leading-relaxed tracking-tight">{feat.desc}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -241,15 +243,15 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="bg-black/20 backdrop-blur-md border-t border-white/10 py-8 mt-auto relative z-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-slate-500 text-sm font-medium">
+      <footer className="border-t border-white/5 py-12 mt-auto relative z-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+          <div className="text-slate-600 text-xs font-bold uppercase tracking-widest">
             © {new Date().getFullYear()} GetYourDomain. All rights reserved.
           </div>
-          <div className="flex space-x-6 text-sm font-medium text-slate-400">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+          <div className="flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+            <Link href="/privacy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
+            <Link href="/contact" className="hover:text-cyan-400 transition-colors">Contact</Link>
           </div>
         </div>
       </footer>

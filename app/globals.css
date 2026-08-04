@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
-  --foreground: #f0f0f0;
+  --background: #020203;
+  --foreground: #EDEDEF;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jetbrains);
 }
 
 body {
@@ -18,21 +18,3 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
-
-/* Modern Animated Background Utility */
-.mesh-bg {
-  background-color: #050505;
-  background-image: 
-    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(225,39%,30%,0.2) 0, transparent 50%), 
-    radial-gradient(at 100% 0%, hsla(339,49%,30%,0.2) 0, transparent 50%);
-  background-attachment: fixed;
-}
-
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-
