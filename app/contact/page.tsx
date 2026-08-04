@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Mail, Twitter, Github } from 'lucide-react';
+import { ArrowLeft, Mail, MessageCircle, Terminal } from 'lucide-react';
 
 export default function Contact() {
   return (
@@ -25,13 +25,13 @@ export default function Contact() {
           </a>
           
           <a href="#" className="p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors group flex flex-col items-center">
-            <Twitter className="w-8 h-8 text-sky-400 mb-4 group-hover:scale-110 transition-transform" />
+            <MessageCircle className="w-8 h-8 text-sky-400 mb-4 group-hover:scale-110 transition-transform" />
             <h3 className="text-white font-bold mb-2">Twitter</h3>
             <p className="text-sm text-slate-400">@GetYourDomain</p>
           </a>
           
           <a href="https://github.com/Mohid59/GetYourDomain" target="_blank" rel="noopener noreferrer" className="p-8 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors group flex flex-col items-center">
-            <Github className="w-8 h-8 text-white mb-4 group-hover:scale-110 transition-transform" />
+            <Terminal className="w-8 h-8 text-white mb-4 group-hover:scale-110 transition-transform" />
             <h3 className="text-white font-bold mb-2">GitHub</h3>
             <p className="text-sm text-slate-400">Open an issue</p>
           </a>
