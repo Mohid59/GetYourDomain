@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
+import Link from 'next/link';
 import SearchBox from '@/components/SearchBox';
 import RegistrarTable from '@/components/RegistrarTable';
 import { DomainSearchResponse } from '@/types/domain';
@@ -246,9 +247,9 @@ export default function Home() {
             © {new Date().getFullYear()} GetYourDomain. All rights reserved.
           </div>
           <div className="flex space-x-6 text-sm font-medium text-slate-400">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Contact</a>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
         </div>
       </footer>
