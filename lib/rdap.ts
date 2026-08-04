@@ -1,18 +1,24 @@
-import dns from 'dns';
-
 export async function checkDomainAvailability(sld: string, tld: string): Promise<boolean> {
   const fullDomain = `${sld}.${tld}`.toLowerCase();
 
-  // Primary Check: DNS Lookup
+  // Primary Check: DNS over HTTPS (DoH) via Cloudflare
   try {
-    const addresses = await dns.promises.resolve4(fullDomain);
-    if (addresses && addresses.length > 0) {
-      return false; // Domain exists and is pointing to IPs -> TAKEN
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2000);
+    const dohRes = await fetch(`https://cloudflare-dns.com/dns-query?name=${fullDomain}&type=A`, {
+      headers: { 'accept': 'application/dns-json' },
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    
+    if (dohRes.ok) {
+      const dnsData = await dohRes.json();
+      if (dnsData.Answer && dnsData.Answer.length > 0) {
+        return false; // Domain exists and has DNS records -> TAKEN
+      }
     }
   } catch (err: any) {
-    if (err.code !== 'ENOTFOUND' && err.code !== 'NODATA') {
-      // Unexpected error, continue to RDAP fallback
-    }
+    // Fallback to RDAP
   }
 
   // Secondary Check: Public RDAP Protocol with 3s Timeout

@@ -3,6 +3,8 @@ import { checkDomainAvailability } from '@/lib/rdap';
 import { getRegistrarPricing, generateAlternativeSuggestions } from '@/lib/pricingEngine';
 import { DomainSearchResponse } from '@/types/domain';
 
+export const runtime = 'edge';
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get('domain');
@@ -39,7 +41,11 @@ export async function GET(request: NextRequest) {
       suggestions
     };
 
-    return NextResponse.json(response);
+    return NextResponse.json(response, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=86400',
+      },
+    });
   } catch (err: any) {
     return NextResponse.json({ error: 'Failed to process domain lookup', details: err.message }, { status: 500 });
   }
