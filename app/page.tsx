@@ -194,6 +194,25 @@ export default function Home() {
                       </div>
                     </div>
                     <RegistrarTable domain={data.domain} pricing={data.pricing}/>
+
+                    {/* Post-Purchase Connect Guide Callout */}
+                    <div className="mt-8 p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-cyan-950/20 to-blue-950/20 border border-cyan-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center flex-shrink-0">
+                          <Zap className="w-5 h-5 text-cyan-400" />
+                        </div>
+                        <div className="text-left">
+                          <h4 className="text-white font-bold text-sm sm:text-base">Ready to deploy your domain?</h4>
+                          <p className="text-xs sm:text-sm text-slate-400">See 60-second copy-paste DNS guides for Vercel, Railway, Render, Netlify & more.</p>
+                        </div>
+                      </div>
+                      <Link
+                        href="/connect"
+                        className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-cyan-400 hover:text-cyan-300 py-2.5 px-4 rounded-xl bg-cyan-400/10 border border-cyan-400/30 hover:bg-cyan-400/20 transition-all flex-shrink-0 w-full sm:w-auto justify-center"
+                      >
+                        Connect Guide →
+                      </Link>
+                    </div>
                   </div>
                 ) : (
                   <div>
@@ -272,6 +291,7 @@ export default function Home() {
             © {new Date().getFullYear()} GetYourDomain. All rights reserved.
           </div>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+            <Link href="/connect" className="text-cyan-400 hover:text-cyan-300 transition-colors py-1">Connect Domain</Link>
             <Link href="/privacy" className="hover:text-cyan-400 transition-colors py-1">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-cyan-400 transition-colors py-1">Terms of Service</Link>
             <Link href="/contact" className="hover:text-cyan-400 transition-colors py-1">Contact</Link>
