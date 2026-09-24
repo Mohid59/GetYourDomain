@@ -14,14 +14,15 @@ export default function RegistrarTable({ pricing, domain }: RegistrarTableProps)
   const maxTCO = Math.max(...pricing.map(p => p.threeYearTCO));
 
   return (
-    <div className="w-full max-w-5xl mx-auto my-16">
-      <div className="flex flex-col md:flex-row justify-between items-baseline mb-8 px-4">
-        <h3 className="font-extralight text-white text-2xl md:text-3xl tracking-tight">
+    <div className="w-full max-w-5xl mx-auto my-8 sm:my-16">
+      {/* Header section */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-6 sm:mb-8 px-2 sm:px-4 gap-3 sm:gap-0">
+        <h3 className="font-extralight text-white text-xl sm:text-2xl md:text-3xl tracking-tight break-all sm:break-normal">
           Pricing for <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">{domain}</span>
         </h3>
-        <div className="flex items-center space-x-4 mt-4 md:mt-0">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
           <div className="flex items-center">
-            <span className="relative flex h-2 w-2 mr-3">
+            <span className="relative flex h-2 w-2 mr-2 sm:mr-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
@@ -33,7 +34,113 @@ export default function RegistrarTable({ pricing, domain }: RegistrarTableProps)
         </div>
       </div>
 
-      <div className="overflow-x-auto pb-8">
+      {/* MOBILE CARD VIEW (Shown on small screens < md) */}
+      <div className="block md:hidden space-y-4 px-1">
+        {pricing.map((reg, idx) => {
+          const isBestValue = reg.threeYearTCO === minTCO;
+          const barWidth = Math.max(15, (reg.threeYearTCO / maxTCO) * 100);
+
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.05, type: 'spring', stiffness: 60 }}
+              key={`mobile-${reg.id}`}
+              className={`p-5 rounded-2xl border transition-all duration-300 relative overflow-hidden ${
+                isBestValue
+                  ? 'bg-gradient-to-b from-cyan-950/20 to-black/40 border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.15)]'
+                  : 'bg-white/[0.02] border-white/10 hover:border-white/20'
+              }`}
+            >
+              {/* Card Header: Rank & Registrar & Badge */}
+              <div className="flex items-center justify-between gap-2 mb-4">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-xs font-mono text-slate-600 font-bold">#{idx + 1}</span>
+                  <span className={`text-xl font-bold tracking-tight ${isBestValue ? 'text-cyan-400' : 'text-white'}`}>
+                    {reg.name}
+                  </span>
+                </div>
+                {isBestValue ? (
+                  <span className="text-[9px] font-bold text-cyan-300 border border-cyan-400/40 bg-cyan-400/10 px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-sm">
+                    <Trophy className="w-3 h-3 text-cyan-400" />
+                    Top Pick
+                  </span>
+                ) : (
+                  <span className="text-[9px] font-bold text-slate-400 border border-white/10 bg-white/5 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    ICANN Verified
+                  </span>
+                )}
+              </div>
+
+              {/* TCO Highlight Banner */}
+              <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 mb-4">
+                <div className="flex items-baseline justify-between mb-2">
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-slate-400">
+                    3-Year Total Cost (TCO)
+                  </span>
+                  <span className={`text-2xl font-black tracking-tight ${isBestValue ? 'text-cyan-400' : 'text-white'}`}>
+                    ${reg.threeYearTCO.toFixed(2)}
+                  </span>
+                </div>
+                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${barWidth}%` }}
+                    transition={{ duration: 0.8, delay: 0.1 + idx * 0.05 }}
+                    className={`h-full rounded-full ${isBestValue ? 'bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]' : 'bg-slate-600'}`}
+                  />
+                </div>
+              </div>
+
+              {/* Price Breakdown Grid */}
+              <div className="grid grid-cols-2 gap-3 mb-4 text-left">
+                <div className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
+                  <div className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">1st Year</div>
+                  <div className="text-base font-bold text-slate-200 mt-0.5">${reg.firstYearPrice.toFixed(2)}</div>
+                </div>
+
+                <div className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5">
+                  <div className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Renewal Rate</div>
+                  <div className={`text-base font-bold mt-0.5 ${reg.renewalPrice > 18 ? 'text-rose-400' : 'text-slate-300'}`}>
+                    ${reg.renewalPrice.toFixed(2)}<span className="text-xs text-slate-500 font-normal">/yr</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* WHOIS Privacy Status */}
+              <div className="flex items-center justify-between py-2 border-t border-white/5 mb-4 text-xs">
+                <span className="text-slate-500">WHOIS Privacy</span>
+                {reg.privacyFree ? (
+                  <span className="inline-flex items-center text-emerald-400 font-bold tracking-wide">
+                    <ShieldCheck className="w-3.5 h-3.5 mr-1" /> Free Forever
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center text-amber-400/90 font-medium">
+                    <X className="w-3.5 h-3.5 mr-1" /> Paid Add-on
+                  </span>
+                )}
+              </div>
+
+              {/* Action Button */}
+              <a
+                href={reg.affiliateUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`w-full flex items-center justify-center py-3 px-4 font-bold text-xs tracking-widest uppercase rounded-xl transition-all active:scale-[0.98] ${
+                  isBestValue
+                    ? 'bg-cyan-400 text-black shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:bg-cyan-300'
+                    : 'bg-white/10 hover:bg-white/15 text-white border border-white/10'
+                }`}
+              >
+                Go to {reg.name} <ExternalLink className="w-3.5 h-3.5 ml-2 opacity-80" />
+              </a>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* DESKTOP TABLE VIEW (Shown on md+ screens) */}
+      <div className="hidden md:block overflow-x-auto pb-8">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="border-b border-white/10 text-[10px] font-bold text-slate-500 uppercase tracking-widest">

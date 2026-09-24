@@ -56,26 +56,26 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
-      {/* Cinematic Ambient Blur Orbs */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-900/30 blur-[150px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-blue-900/20 blur-[150px] rounded-full pointer-events-none -z-10" />
+      {/* Cinematic Ambient Blur Orbs - sized responsively */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[600px] lg:w-[800px] h-[250px] sm:h-[400px] bg-cyan-900/30 blur-[100px] sm:blur-[150px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute bottom-0 right-0 w-[280px] sm:w-[500px] lg:w-[600px] h-[250px] sm:h-[400px] bg-blue-900/20 blur-[100px] sm:blur-[150px] rounded-full pointer-events-none -z-10" />
 
-      <main className="flex-grow py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+      <main className="flex-grow py-10 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           
           <motion.div 
             initial="hidden" 
             animate="visible" 
             variants={containerVariants}
-            className="mb-16"
+            className="mb-8 sm:mb-16"
           >
-            <motion.div variants={itemVariants} className="inline-block mb-8">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400 border-b border-cyan-400/30 pb-2">Next-Gen Domain Search</span>
+            <motion.div variants={itemVariants} className="inline-block mb-4 sm:mb-8">
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400 border-b border-cyan-400/30 pb-1.5 sm:pb-2">Next-Gen Domain Search</span>
             </motion.div>
-            <motion.h1 variants={itemVariants} className="text-6xl sm:text-8xl font-extrabold tracking-tighter text-white mb-8">
+            <motion.h1 variants={itemVariants} className="text-4xl xs:text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight sm:tracking-tighter text-white mb-4 sm:mb-8 break-words">
               GetYour<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Domain</span>
             </motion.h1>
-            <motion.p variants={itemVariants} className="mt-6 text-xl sm:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed tracking-tight">
+            <motion.p variants={itemVariants} className="mt-4 sm:mt-6 text-base sm:text-xl lg:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed tracking-tight px-1 sm:px-0">
               Stop overpaying for renewals. Compare real domain costs across major registrars and find the true 3-year price instantly.
             </motion.p>
           </motion.div>
@@ -88,16 +88,18 @@ export default function Home() {
             <SearchBox isLoading={loading} onSearch={handleSearch}/>
             
             {/* Legitimate Trust Signal Banner */}
-            <div className="mt-4 max-w-3xl mx-auto flex flex-col items-center justify-center opacity-70 mb-12">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-6 text-center">Data Indexed from ICANN-Accredited Registrars • Last Verified: {lastVerifiedDate}</p>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-                <div className="text-sm font-bold tracking-tight text-white">Namecheap</div>
-                <div className="text-sm font-bold tracking-tight text-white">Porkbun</div>
-                <div className="text-sm font-bold tracking-tight text-white">Spaceship</div>
-                <div className="text-sm font-bold tracking-tight text-white">Cloudflare</div>
-                <div className="text-sm font-bold tracking-tight text-white">Hostinger</div>
-                <div className="text-sm font-bold tracking-tight text-white">Wix</div>
-                <div className="text-sm font-bold tracking-tight text-white">GoDaddy</div>
+            <div className="mt-4 max-w-3xl mx-auto flex flex-col items-center justify-center mb-8 sm:mb-12">
+              <p className="text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-slate-500 font-bold mb-4 sm:mb-6 text-center leading-relaxed px-2">
+                Data Indexed from ICANN-Accredited Registrars • Last Verified: {lastVerifiedDate}
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-8 gap-y-2.5 sm:gap-y-4 opacity-75 sm:opacity-50 sm:grayscale sm:hover:grayscale-0 sm:hover:opacity-100 transition-all duration-700">
+                <div className="text-xs sm:text-sm font-bold tracking-tight text-white/90">Namecheap</div>
+                <div className="text-xs sm:text-sm font-bold tracking-tight text-white/90">Porkbun</div>
+                <div className="text-xs sm:text-sm font-bold tracking-tight text-white/90">Spaceship</div>
+                <div className="text-xs sm:text-sm font-bold tracking-tight text-white/90">Cloudflare</div>
+                <div className="text-xs sm:text-sm font-bold tracking-tight text-white/90">Hostinger</div>
+                <div className="text-xs sm:text-sm font-bold tracking-tight text-white/90">Wix</div>
+                <div className="text-xs sm:text-sm font-bold tracking-tight text-white/90">GoDaddy</div>
               </div>
             </div>
           </motion.div>
@@ -109,12 +111,12 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="mt-12 p-6 bg-transparent border-l-2 border-rose-500 flex items-center text-left text-rose-200"
+                className="mt-8 sm:mt-12 p-4 sm:p-6 bg-rose-950/20 border-l-2 border-rose-500 rounded-r-xl flex items-start sm:items-center text-left text-rose-200"
               >
-                <AlertTriangle className="w-8 h-8 text-rose-400 mr-5 flex-shrink-0"/>
+                <AlertTriangle className="w-6 h-6 sm:w-8 sm:h-8 text-rose-400 mr-3 sm:mr-5 flex-shrink-0 mt-0.5 sm:mt-0"/>
                 <div>
-                  <p className="font-bold text-xl text-rose-300 tracking-tight">Oops! Something went wrong.</p>
-                  <p className="text-sm opacity-80 mt-1">{error}</p>
+                  <p className="font-bold text-lg sm:text-xl text-rose-300 tracking-tight">Oops! Something went wrong.</p>
+                  <p className="text-xs sm:text-sm opacity-80 mt-1">{error}</p>
                 </div>
               </motion.div>
             )}
@@ -125,16 +127,37 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="mt-12 w-full max-w-4xl mx-auto"
+                className="mt-8 sm:mt-12 w-full max-w-4xl mx-auto"
               >
-                {/* High Fidelity Shimmer Skeleton */}
-                <div className="w-full bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative">
-                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent z-10"></div>
-                  <div className="p-6 bg-black/20 border-b border-white/10 flex justify-between items-center relative z-0">
-                    <div className="h-6 w-1/3 bg-white/10 rounded-lg"></div>
-                    <div className="h-6 w-32 bg-white/10 rounded-full"></div>
+                {/* High Fidelity Shimmer Skeleton - Mobile & Desktop responsive */}
+                <div className="w-full bg-white/5 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative">
+                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent z-10 pointer-events-none"></div>
+                  
+                  <div className="p-4 sm:p-6 bg-black/20 border-b border-white/10 flex justify-between items-center relative z-0">
+                    <div className="h-5 sm:h-6 w-1/2 sm:w-1/3 bg-white/10 rounded-lg"></div>
+                    <div className="h-5 sm:h-6 w-20 sm:w-32 bg-white/10 rounded-full"></div>
                   </div>
-                  <div className="p-4 space-y-4 relative z-0">
+
+                  {/* Mobile Skeleton Cards */}
+                  <div className="block md:hidden p-4 space-y-4 relative z-0">
+                    {[...Array(3)].map((_, i) => (
+                      <div key={`mob-skel-${i}`} className="p-4 rounded-xl border border-white/5 bg-white/[0.02] space-y-3">
+                        <div className="flex justify-between items-center">
+                          <div className="h-6 w-28 bg-white/10 rounded-md"></div>
+                          <div className="h-5 w-16 bg-white/10 rounded-full"></div>
+                        </div>
+                        <div className="h-14 bg-white/5 rounded-lg"></div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="h-10 bg-white/5 rounded-md"></div>
+                          <div className="h-10 bg-white/5 rounded-md"></div>
+                        </div>
+                        <div className="h-10 bg-white/10 rounded-xl"></div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Desktop Skeleton Table */}
+                  <div className="hidden md:block p-4 space-y-4 relative z-0">
                     {[...Array(5)].map((_, i) => (
                       <div key={i} className="flex items-center justify-between p-4 border-b border-white/5 last:border-0">
                         <div className="h-6 w-32 bg-white/10 rounded-lg"></div>
@@ -159,36 +182,36 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-                className="mt-12 text-left"
+                className="mt-8 sm:mt-12 text-left"
               >
                 {data.isAvailable ? (
                   <div>
-                    <div className="p-8 bg-transparent border-l-2 border-emerald-400 flex items-center text-emerald-100 mb-12">
-                      <CheckCircle2 className="w-12 h-12 text-emerald-400 mr-6 flex-shrink-0"/>
+                    <div className="p-4 sm:p-8 bg-emerald-950/15 border-l-2 border-emerald-400 rounded-r-2xl flex items-start sm:items-center text-emerald-100 mb-8 sm:mb-12">
+                      <CheckCircle2 className="w-8 h-8 sm:w-12 sm:h-12 text-emerald-400 mr-3 sm:mr-6 flex-shrink-0 mt-0.5 sm:mt-0"/>
                       <div>
-                        <p className="font-bold text-4xl tracking-tighter">{data.domain} is available!</p>
-                        <p className="text-lg text-emerald-400/80 mt-2 font-light tracking-tight">Select a registrar below to secure the best total cost.</p>
+                        <p className="font-bold text-2xl sm:text-4xl tracking-tight break-all">{data.domain} is available!</p>
+                        <p className="text-sm sm:text-lg text-emerald-400/80 mt-1 sm:mt-2 font-light tracking-tight">Select a registrar below to secure the best total cost.</p>
                       </div>
                     </div>
                     <RegistrarTable domain={data.domain} pricing={data.pricing}/>
                   </div>
                 ) : (
                   <div>
-                    <div className="p-8 bg-transparent border-l-2 border-amber-400 flex items-center text-amber-100 mb-12">
-                      <XCircle className="w-12 h-12 text-amber-400 mr-6 flex-shrink-0"/>
+                    <div className="p-4 sm:p-8 bg-amber-950/15 border-l-2 border-amber-400 rounded-r-2xl flex items-start sm:items-center text-amber-100 mb-8 sm:mb-12">
+                      <XCircle className="w-8 h-8 sm:w-12 sm:h-12 text-amber-400 mr-3 sm:mr-6 flex-shrink-0 mt-0.5 sm:mt-0"/>
                       <div>
-                        <p className="font-bold text-4xl tracking-tighter">{data.domain} is taken.</p>
-                        <p className="text-lg text-amber-400/80 mt-2 font-light tracking-tight">Try one of the alternative brand suggestions below.</p>
+                        <p className="font-bold text-2xl sm:text-4xl tracking-tight break-all">{data.domain} is taken.</p>
+                        <p className="text-sm sm:text-lg text-amber-400/80 mt-1 sm:mt-2 font-light tracking-tight">Try one of the alternative brand suggestions below.</p>
                       </div>
                     </div>
 
                     {data.suggestions.length > 0 && (
-                      <div className="p-8 mt-4 border-t border-white/5">
-                        <h4 className="text-lg font-bold text-white mb-6 flex items-center tracking-widest uppercase text-[11px] text-amber-400/80">
+                      <div className="p-4 sm:p-8 mt-4 border-t border-white/5">
+                        <h4 className="font-bold text-white mb-4 sm:mb-6 flex items-center tracking-widest uppercase text-[10px] sm:text-[11px] text-amber-400/80">
                           <Zap className="w-4 h-4 mr-2"/>
                           Available Alternatives
                         </h4>
-                        <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-wrap gap-2.5 sm:gap-4">
                           {data.suggestions.map((sug, i) => (
                             <motion.button
                               key={sug}
@@ -198,7 +221,7 @@ export default function Home() {
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={() => handleSearch(sug)}
-                              className="px-6 py-3 bg-transparent border-b border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 text-lg font-light transition-colors"
+                              className="px-4 py-2 sm:px-6 sm:py-3 bg-white/[0.03] sm:bg-transparent rounded-lg sm:rounded-none border sm:border-0 sm:border-b border-white/10 sm:border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 text-sm sm:text-lg font-light transition-all"
                             >
                               {sug}
                             </motion.button>
@@ -217,7 +240,7 @@ export default function Home() {
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-4xl mx-auto"
+                className="mt-12 sm:mt-20 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 text-left max-w-4xl mx-auto"
               >
                 {[
                   { icon: Globe, title: "50+ Top TLDs", desc: "Search across the most popular domain extensions including .com, .net, .io, and more.", color: "text-cyan-400" },
@@ -227,14 +250,14 @@ export default function Home() {
                   <motion.div 
                     key={idx}
                     variants={itemVariants}
-                    className="p-8 group relative"
+                    className="p-6 sm:p-8 rounded-2xl sm:rounded-none bg-white/[0.02] sm:bg-transparent border border-white/5 sm:border-0 group relative"
                   >
-                    <div className="absolute top-0 left-8 w-8 h-px bg-white/20 group-hover:bg-cyan-400 group-hover:w-16 transition-all duration-500"></div>
-                    <div className={`mt-6 mb-6 ${feat.color}`}>
-                      <feat.icon className="w-8 h-8"/>
+                    <div className="hidden sm:block absolute top-0 left-8 w-8 h-px bg-white/20 group-hover:bg-cyan-400 group-hover:w-16 transition-all duration-500"></div>
+                    <div className={`mb-4 sm:mt-6 sm:mb-6 ${feat.color}`}>
+                      <feat.icon className="w-6 h-6 sm:w-8 sm:h-8"/>
                     </div>
-                    <h3 className="font-bold text-white text-2xl mb-3 tracking-tight">{feat.title}</h3>
-                    <p className="text-slate-400 text-lg font-light leading-relaxed tracking-tight">{feat.desc}</p>
+                    <h3 className="font-bold text-white text-xl sm:text-2xl mb-2 sm:mb-3 tracking-tight">{feat.title}</h3>
+                    <p className="text-slate-400 text-sm sm:text-lg font-light leading-relaxed tracking-tight">{feat.desc}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -243,15 +266,15 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="border-t border-white/5 py-12 mt-auto relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+      <footer className="border-t border-white/5 py-8 sm:py-12 mt-auto relative z-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 text-center sm:text-left">
           <div className="text-slate-600 text-xs font-bold uppercase tracking-widest">
             © {new Date().getFullYear()} GetYourDomain. All rights reserved.
           </div>
-          <div className="flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-            <Link href="/privacy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
-            <Link href="/contact" className="hover:text-cyan-400 transition-colors">Contact</Link>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+            <Link href="/privacy" className="hover:text-cyan-400 transition-colors py-1">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-cyan-400 transition-colors py-1">Terms of Service</Link>
+            <Link href="/contact" className="hover:text-cyan-400 transition-colors py-1">Contact</Link>
           </div>
         </div>
       </footer>

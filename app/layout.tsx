@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -15,6 +15,13 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "GetYourDomain | The True Cost of Domains",
   description: "Compare real domain costs across major registrars. Find true 3-year renewal prices instantly.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#020203",
 };
 
 export default function RootLayout({
