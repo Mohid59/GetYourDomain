@@ -24,7 +24,7 @@ export default function Home() {
     setError(null);
     setData(null);
     try {
-      const res = await fetch(`/api/search?domain=${encodeURIComponent(domain)}`);
+      const res = await fetch(`/api/lookup?domain=${encodeURIComponent(domain)}`);
       if (!res.ok) {
         throw new Error('Failed to fetch domain information.');
       }
