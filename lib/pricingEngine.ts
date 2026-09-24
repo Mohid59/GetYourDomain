@@ -17,7 +17,7 @@ const REGISTRARS = [
   { id: 'namecheap', name: 'Namecheap', baseUrl: 'https://www.namecheap.com/domains/registration/results/?domain=' },
   { id: 'hostinger', name: 'Hostinger', baseUrl: 'https://www.hostinger.com/domain-name-results?domain=' },
   { id: 'godaddy', name: 'GoDaddy', baseUrl: 'https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=' },
-  { id: 'cloudflare', name: 'Cloudflare', baseUrl: 'https://www.cloudflare.com/products/registrar/' },
+  { id: 'cloudflare', name: 'Cloudflare', baseUrl: 'https://www.cloudflare.com/domains/search?q=' },
   { id: 'wix', name: 'Wix', baseUrl: 'https://www.wix.com/domain/result/?q=' }
 ];
 
@@ -34,10 +34,8 @@ export function getRegistrarPricing(fullDomain: string, tld: string): RegistrarP
     const threeYearTCO = parseFloat((pricing.firstYear + pricing.renewal * 2).toFixed(2));
 
       let affiliateUrl = `${reg.baseUrl}${fullDomain}${reg.baseUrl.includes('?') ? '&' : '?'}aff=getyourdomain_tag`;
-      if (reg.id === 'godaddy') {
-        affiliateUrl = `${reg.baseUrl}${fullDomain}`;
-      } else if (reg.id === 'cloudflare') {
-        affiliateUrl = reg.baseUrl;
+      if (reg.id === 'godaddy' || reg.id === 'cloudflare') {
+        affiliateUrl = `${reg.baseUrl}${encodeURIComponent(fullDomain)}`;
       }
 
       return {
