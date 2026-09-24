@@ -46,19 +46,29 @@ export default function Home() {
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 15, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: 'spring', stiffness: 100, damping: 15 },
+      transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
-      {/* Cinematic Ambient Blur Orbs - sized responsively */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[600px] lg:w-[800px] h-[250px] sm:h-[400px] bg-cyan-900/30 blur-[100px] sm:blur-[150px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute bottom-0 right-0 w-[280px] sm:w-[500px] lg:w-[600px] h-[250px] sm:h-[400px] bg-blue-900/20 blur-[100px] sm:blur-[150px] rounded-full pointer-events-none -z-10" />
+      {/* High-performance ambient glow using hardware-accelerated radial gradients (zero blur filter penalty) */}
+      <div 
+        className="ambient-glow absolute top-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[600px] lg:w-[800px] h-[250px] sm:h-[400px] rounded-full -z-10"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(8, 145, 178, 0.22) 0%, rgba(8, 145, 178, 0.06) 45%, transparent 70%)',
+        }}
+      />
+      <div 
+        className="ambient-glow absolute bottom-0 right-0 w-[280px] sm:w-[500px] lg:w-[600px] h-[250px] sm:h-[400px] rounded-full -z-10"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(30, 58, 138, 0.22) 0%, rgba(30, 58, 138, 0.05) 50%, transparent 70%)',
+        }}
+      />
 
       <main className="flex-grow py-10 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
@@ -130,7 +140,7 @@ export default function Home() {
                 className="mt-8 sm:mt-12 w-full max-w-4xl mx-auto"
               >
                 {/* High Fidelity Shimmer Skeleton - Mobile & Desktop responsive */}
-                <div className="w-full bg-white/5 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative">
+                <div className="w-full bg-[#0a0a10] rounded-2xl sm:rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative">
                   <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent z-10 pointer-events-none"></div>
                   
                   <div className="p-4 sm:p-6 bg-black/20 border-b border-white/10 flex justify-between items-center relative z-0">

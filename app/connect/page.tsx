@@ -272,9 +272,19 @@ export default function ConnectDomainPage() {
 
   return (
     <div className="min-h-screen py-10 sm:py-20 px-4 sm:px-6 lg:px-8 relative z-10 text-slate-300">
-      {/* Cinematic Ambient Blur Orbs */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[700px] h-[300px] bg-cyan-900/20 blur-[130px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute bottom-1/3 right-0 w-[280px] sm:w-[500px] h-[300px] bg-purple-900/15 blur-[130px] rounded-full pointer-events-none -z-10" />
+      {/* High-performance ambient glow using hardware-accelerated radial gradients (zero blur filter penalty) */}
+      <div 
+        className="ambient-glow absolute top-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[700px] h-[300px] rounded-full -z-10"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(8, 145, 178, 0.18) 0%, rgba(8, 145, 178, 0.04) 50%, transparent 70%)',
+        }}
+      />
+      <div 
+        className="ambient-glow absolute bottom-1/3 right-0 w-[280px] sm:w-[500px] h-[300px] rounded-full -z-10"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(147, 51, 234, 0.15) 0%, rgba(147, 51, 234, 0.03) 50%, transparent 70%)',
+        }}
+      />
 
       <div className="max-w-5xl mx-auto">
         {/* Navigation Breadcrumb */}
@@ -307,7 +317,7 @@ export default function ConnectDomainPage() {
         </div>
 
         {/* Optional Domain Customizer Field */}
-        <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-white/[0.04] to-cyan-950/20 border border-white/10 mb-10 backdrop-blur-sm">
+        <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-white/[0.04] to-cyan-950/20 border border-white/10 mb-10">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <label htmlFor="custom-domain-input" className="text-xs uppercase font-bold tracking-widest text-cyan-300 flex items-center gap-1.5">
@@ -375,10 +385,10 @@ export default function ConnectDomainPage() {
         {/* Active Platform Guide Box */}
         <motion.div
           key={currentPlatform.id}
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="rounded-3xl border border-white/10 bg-white/[0.02] p-5 sm:p-8 backdrop-blur-md mb-12 shadow-2xl relative overflow-hidden"
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="rounded-3xl border border-white/10 bg-[#08080d] p-5 sm:p-8 mb-12 shadow-2xl relative overflow-hidden"
         >
           {/* Platform Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">

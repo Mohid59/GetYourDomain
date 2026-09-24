@@ -42,13 +42,13 @@ export default function RegistrarTable({ pricing, domain }: RegistrarTableProps)
 
           return (
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.05, type: 'spring', stiffness: 60 }}
+              transition={{ delay: idx * 0.02, duration: 0.25, ease: 'easeOut' }}
               key={`mobile-${reg.id}`}
-              className={`p-5 rounded-2xl border transition-all duration-300 relative overflow-hidden ${
+              className={`p-5 rounded-2xl border transition-colors duration-200 relative overflow-hidden ${
                 isBestValue
-                  ? 'bg-gradient-to-b from-cyan-950/20 to-black/40 border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.15)]'
+                  ? 'bg-gradient-to-b from-cyan-950/20 to-black/40 border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.1)]'
                   : 'bg-white/[0.02] border-white/10 hover:border-white/20'
               }`}
             >
@@ -159,11 +159,11 @@ export default function RegistrarTable({ pricing, domain }: RegistrarTableProps)
               
               return (
                 <motion.tr 
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.05, type: 'spring', stiffness: 50 }}
+                  transition={{ delay: idx * 0.02, duration: 0.2, ease: 'easeOut' }}
                   key={reg.id} 
-                  className="group border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors duration-500"
+                  className="group border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors duration-200"
                 >
                   <td className="py-6 px-6 font-medium text-white flex items-center space-x-3 whitespace-nowrap">
                     <span className={`text-xl font-bold tracking-tight ${isBestValue ? 'text-cyan-400' : 'text-slate-200'}`}>{reg.name}</span>
