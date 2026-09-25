@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-24T02:29:01.611Z",
+  "lastUpdated": "2026-09-25T02:44:57.119Z",
   "rates": {
     "com": {
       "porkbun": {
@@ -139,8 +139,8 @@
         "privacyFree": false
       },
       "cloudflare": {
-        "firstYear": 32.0,
-        "renewal": 50.0,
+        "firstYear": 32,
+        "renewal": 50,
         "privacyFree": true
       },
       "wix": {
